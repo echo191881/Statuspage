@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Servers</title>
+    <link rel="stylesheet" href="styles.css"> <!-- You can link your CSS file here -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const serverStatus = {
+                "192.168.1.102": "Checking...",
+                "192.168.1.102": "Checking..."
+                // Add more servers as needed
+            };
+
+            function checkServerStatus() {
+                Object.keys(serverStatus).forEach(ip => {
+                    const statusElement = document.querySelector(`[data-ip="${ip}"] .status`);
+                    const status = Math.random() < 0.8 ? "Online" : "Offline"; // Example: Randomly generate status
+                    serverStatus[ip] = status;
+                    statusElement.textContent = status;
+                    statusElement.style.color = status === "Online" ? "green" : "red";
+                });
+            }
+
+            checkServerStatus(); // Call the function initially
+
+            // Optionally, you can periodically update the server status
+            // setInterval(checkServerStatus, 5000); // Update every 5 seconds
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Test Servers</h1>
+        <!-- Navigation menu can be added here -->
+    </header>
+    
+    <section id="server-status">
+        <h2>Server Status</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Server Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="server-row" data-ip="">
+                    <td>EU</td>
+                    <td class="status">Checking ..</td>
+                </tr>
+                <tr class="server-row" data-ip="192.168.1.102">
+                    <td>NAE</td>
+                    <td class="status">Checking..</td>
+                </tr>
+                <!-- Add more rows for each server -->
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Nick All rights reserved.</p>
+    </footer>
+</body>
+</html>
